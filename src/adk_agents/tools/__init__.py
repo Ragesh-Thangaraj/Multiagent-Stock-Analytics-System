@@ -1,0 +1,111 @@
+"""
+Function Tools for ADK Agents
+
+This module contains all calculation functions converted to ADK function tools.
+Each function follows the ADK tool pattern with proper docstrings and type hints.
+"""
+
+from .data_tools import (
+    fetch_yahoo_finance_data,
+    fetch_marketaux_news,
+    get_stock_info,
+)
+
+from .ratio_tools import (
+    calculate_gross_margin,
+    calculate_operating_margin,
+    calculate_net_margin,
+    calculate_roa,
+    calculate_roe,
+    calculate_roic,
+    calculate_current_ratio,
+    calculate_quick_ratio,
+    calculate_cash_ratio,
+    calculate_working_capital,
+    calculate_debt_to_equity,
+    calculate_debt_to_assets,
+    calculate_interest_coverage,
+    calculate_asset_turnover,
+    calculate_inventory_turnover,
+    calculate_receivables_turnover,
+    calculate_revenue_growth,
+    calculate_net_income_growth,
+    calculate_eps_growth,
+    calculate_fcf_growth,
+    calculate_free_cash_flow,
+    calculate_operating_cash_flow_ratio,
+    calculate_cash_flow_margin,
+)
+
+from .valuation_tools import (
+    calculate_pe_ratio,
+    calculate_forward_pe,
+    calculate_price_to_book,
+    calculate_price_to_sales,
+    calculate_ev_to_ebitda,
+    calculate_peg_ratio,
+    calculate_enterprise_value,
+    calculate_earnings_yield,
+    calculate_book_value_per_share,
+    calculate_dividend_yield,
+)
+
+from .risk_tools import (
+    calculate_beta,
+    calculate_volatility,
+    calculate_sharpe_ratio,
+    calculate_max_drawdown,
+    calculate_var_95,
+    calculate_altman_z_score,
+    calculate_credit_risk_score,
+    calculate_liquidity_risk_score,
+    calculate_operational_risk_score,
+)
+
+__all__ = [
+    'fetch_yahoo_finance_data',
+    'fetch_marketaux_news',
+    'get_stock_info',
+    'calculate_gross_margin',
+    'calculate_operating_margin',
+    'calculate_net_margin',
+    'calculate_roa',
+    'calculate_roe',
+    'calculate_roic',
+    'calculate_current_ratio',
+    'calculate_quick_ratio',
+    'calculate_cash_ratio',
+    'calculate_working_capital',
+    'calculate_debt_to_equity',
+    'calculate_debt_to_assets',
+    'calculate_interest_coverage',
+    'calculate_asset_turnover',
+    'calculate_inventory_turnover',
+    'calculate_receivables_turnover',
+    'calculate_revenue_growth',
+    'calculate_net_income_growth',
+    'calculate_eps_growth',
+    'calculate_fcf_growth',
+    'calculate_free_cash_flow',
+    'calculate_operating_cash_flow_ratio',
+    'calculate_cash_flow_margin',
+    'calculate_pe_ratio',
+    'calculate_forward_pe',
+    'calculate_price_to_book',
+    'calculate_price_to_sales',
+    'calculate_ev_to_ebitda',
+    'calculate_peg_ratio',
+    'calculate_enterprise_value',
+    'calculate_earnings_yield',
+    'calculate_book_value_per_share',
+    'calculate_dividend_yield',
+    'calculate_beta',
+    'calculate_volatility',
+    'calculate_sharpe_ratio',
+    'calculate_max_drawdown',
+    'calculate_var_95',
+    'calculate_altman_z_score',
+    'calculate_credit_risk_score',
+    'calculate_liquidity_risk_score',
+    'calculate_operational_risk_score',
+]

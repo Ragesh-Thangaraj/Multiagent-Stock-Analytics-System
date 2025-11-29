@@ -1,0 +1,79 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11"]
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -e .
+        pip install pytest pytest-cov black ruff
+    
+    - name: Lint with ruff
+      run: |
+        ruff check src/
+      continue-on-error: true
+    
+    - name: Format check with black
+      run: |
+        black --check src/
+      continue-on-error: true
+    
+    - name: Run tests
+      run: |
+        pytest src/tests/ -v --cov=src --cov-report=xml
+      continue-on-error: true
+    
+    - name: Upload coverage reports
+      uses: codecov/codecov-action@v3
+      with:
+        file: ./coverage.xml
+      continue-on-error: true
+
+  build-agent-package:
+    runs-on: ubuntu-latest
+    needs: test
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Build Agent Engine Package
+      run: |
+        cd agent_engine_package
+        zip -r agent_engine_bundle.zip *
+    
+    - name: Upload Agent Package
+      uses: actions/upload-artifact@v3
+      with:
+        name: agent-engine-bundle
+        path: agent_engine_package/agent_engine_bundle.zip
+
+  docker-build:
+    runs-on: ubuntu-latest
+    needs: test
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Build Docker image
+      run: |
+        docker build -t voice-stock-analytics:${{ github.sha }} .
+      continue-on-error: true
