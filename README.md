@@ -1,6 +1,6 @@
 # Stock Analytics Agent
 
-A production-ready, chat-based stock analytics system featuring comprehensive financial analysis, AI-powered insights, and professional report generation.
+A multi-agent, multitool, chat-based stock analytics system featuring comprehensive financial analysis, AI-powered insights, and professional report generation.
 
 ## Project Overview
 
@@ -16,10 +16,9 @@ The system uses ADK's `SequentialAgent` and `ParallelAgent` for workflow orchest
 
 - **ADK-driven workflow**: `Runner.run_async` executes the agent pipeline
 - **Deterministic calculations**: Each agent calls existing calculation functions directly (no LLM inference for math)
-- **State persistence**: Results flow between agents via `EventActions.state_delta`
+- **State persistence**: Results flow between agents through explicit ADK session state updates using the session service
 - **Tool-Based Agents**: All calculations run through ADK tools for deterministic, structured execution.
-- **MCP Server**: Full pipeline exposed via MCP for api integration , gaurdrails etc.
-- **Agent Logs**: Every run generates detailed agent logs stored in logs/agents/ for traceability.
+- **MCP Server**: Exposes the pipeline via an MCP endpoint with guardrails, input validation, rate-limiting, and safe output filtering.
 
 ```
 SequentialAgent (StockAnalyticsPipeline)
@@ -61,6 +60,11 @@ SequentialAgent (StockAnalyticsPipeline)
 - **Yahoo Finance**: Price history, fundamentals, precomputed ratios, company info
 - **MarketAux API**: News articles with sentiment analysis
 
+### MCP Guardrails & Validation
+- Input validation (ticker format, required fundamentals) enforced before running pipelines.
+- Rate limiting and execution time caps enforced by the MCP server’s guardrail policy.
+- Output filtering applied before returning results.
+
 ## Quick Start
 
 ### Prerequisites
@@ -77,7 +81,7 @@ streamlit run app.py
 ### Usage Example
 
 ```python
-from src.adk_agents import run_stock_analysis, get_orchestrator
+from src.adk_agents.orchestrator import run_stock_analysis, get_orchestrator
 
 # Run comprehensive stock analysis via ADK Runner
 result = run_stock_analysis("AAPL", period_days=252)
@@ -86,6 +90,7 @@ result = run_stock_analysis("AAPL", period_days=252)
 profitability = result['calculated']['profitability']
 valuation = result['calculated']['valuation']
 risk = result['calculated']['risk_market']
+overall_risk = result["overall_risk"]
 
 # Get the generated report
 report = result['report']
