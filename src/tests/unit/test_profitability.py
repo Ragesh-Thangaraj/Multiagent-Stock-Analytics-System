@@ -4,7 +4,6 @@ Uses the ADK tools for ratio calculations.
 """
 
 import pytest
-import json
 from src.adk_agents.tools.ratio_tools import (
     calculate_gross_margin,
     calculate_operating_margin,
@@ -13,136 +12,120 @@ from src.adk_agents.tools.ratio_tools import (
     calculate_roe,
 )
 
-
 def calculate_profitability(data):
-    """Wrapper to maintain test compatibility with new ADK tools."""
-    results = {
+    """Wrapper matching new ADK tools."""
+    return {
         "gross_margin": calculate_gross_margin(data),
         "operating_margin": calculate_operating_margin(data),
         "net_margin": calculate_net_margin(data),
         "roa": calculate_roa(data),
         "roe": calculate_roe(data),
     }
-    return results
-
 
 class TestProfitabilityCalculations:
-    """Test suite for profitability metrics."""
-    
-    def test_gross_margin_calculation(self):
-        """Test gross margin calculation."""
+
+    def test_gross_margin_precomputed(self):
+        """Uses Yahoo precomputed gross margins."""
+        data = {
+            "info": {"gross_margins": 0.40}  # 40%
+        }
+
+        metrics = calculate_profitability(data)
+        gm = metrics["gross_margin"]
+
+        assert gm["status"] == "success"
+        assert gm["value"] == 40.0
+        assert gm["formula"] == "(Revenue - COGS) / Revenue × 100"
+        assert gm["source"] == "yahoo_finance.precomputed"
+
+    def test_gross_margin_fundamentals(self):
+        """Uses fundamentals fallback structure."""
         data = {
             "fundamentals": {
                 "income_statement": {
-                    "revenue": 100000,
-                    "gross_profit": 40000
+                    "2024": {
+                        "Total Revenue": 100000,
+                        "Gross Profit": 40000,
+                    }
                 }
             }
         }
-        
+
         metrics = calculate_profitability(data)
-        
-        assert "gross_margin" in metrics
-        assert metrics["gross_margin"]["value"] == 0.4
-        assert metrics["gross_margin"]["formula"] == "gross_profit / revenue"
-    
-    def test_operating_margin_calculation(self):
-        """Test operating margin calculation."""
-        data = {
-            "fundamentals": {
-                "income_statement": {
-                    "revenue": 100000,
-                    "operating_income": 25000
-                }
-            }
-        }
-        
+        gm = metrics["gross_margin"]
+
+        assert gm["status"] == "success"
+        assert gm["value"] == 40.0
+        assert gm["source"] == "calculated.fundamentals"
+
+    def test_operating_margin_precomputed(self):
+        data = {"info": {"operating_margins": 0.25}}
+
         metrics = calculate_profitability(data)
-        
-        assert "operating_margin" in metrics
-        assert metrics["operating_margin"]["value"] == 0.25
-    
-    def test_net_margin_calculation(self):
-        """Test net margin calculation."""
-        data = {
-            "fundamentals": {
-                "income_statement": {
-                    "revenue": 100000,
-                    "net_income": 15000
-                }
-            }
-        }
-        
+        om = metrics["operating_margin"]
+
+        assert om["status"] == "success"
+        assert om["value"] == 25.0
+
+    def test_net_margin_precomputed(self):
+        data = {"info": {"profit_margins": 0.15}}
+
         metrics = calculate_profitability(data)
-        
-        assert "net_margin" in metrics
-        assert metrics["net_margin"]["value"] == 0.15
-    
-    def test_roa_calculation(self):
-        """Test Return on Assets calculation."""
-        data = {
-            "fundamentals": {
-                "income_statement": {
-                    "net_income": 15000
-                },
-                "balance_sheet": {
-                    "total_assets": 200000
-                }
-            }
-        }
-        
+        nm = metrics["net_margin"]
+
+        assert nm["status"] == "success"
+        assert nm["value"] == 15.0
+
+    def test_roa_precomputed(self):
+        data = {"info": {"return_on_assets": 0.075}}
+
         metrics = calculate_profitability(data)
-        
-        assert "roa" in metrics
-        assert metrics["roa"]["value"] == 0.075
-    
-    def test_roe_calculation(self):
-        """Test Return on Equity calculation."""
-        data = {
-            "fundamentals": {
-                "income_statement": {
-                    "net_income": 15000
-                },
-                "balance_sheet": {
-                    "shareholders_equity": 100000
-                }
-            }
-        }
-        
+        roa = metrics["roa"]
+
+        assert roa["status"] == "success"
+        assert roa["value"] == 7.5
+
+    def test_roe_precomputed(self):
+        data = {"info": {"return_on_equity": 0.15}}
+
         metrics = calculate_profitability(data)
-        
-        assert "roe" in metrics
-        assert metrics["roe"]["value"] == 0.15
-    
+        roe = metrics["roe"]
+
+        assert roe["status"] == "success"
+        assert roe["value"] == 15.0
+
     def test_missing_data_handling(self):
-        """Test handling of missing data with null_reason."""
+        """Matches new null_reason behavior."""
         data = {
             "fundamentals": {
                 "income_statement": {},
                 "balance_sheet": {}
             }
         }
-        
+
         metrics = calculate_profitability(data)
-        
-        assert metrics["gross_margin"]["value"] is None
-        assert metrics["gross_margin"]["null_reason"] == "missing_revenue_or_gross_profit"
-    
+        gm = metrics["gross_margin"]
+
+        assert gm["value"] is None
+        assert gm["null_reason"] == "Gross margin data not available"
+
     def test_zero_division_handling(self):
-        """Test handling of zero division."""
+        """New code returns None because fundamentals do not provide usable format."""
         data = {
             "fundamentals": {
                 "income_statement": {
-                    "revenue": 0,
-                    "gross_profit": 40000
+                    "2024": {
+                        "Total Revenue": 0,
+                        "Gross Profit": 40000
+                    }
                 }
             }
         }
-        
+
         metrics = calculate_profitability(data)
-        
-        assert metrics["gross_margin"]["value"] is None
+        gm = metrics["gross_margin"]
+
+        assert gm["value"] is None
+        assert gm["status"] == "error"
 
 
-if __name__ == "__main__":
-    pytest.main([__file__, "-v"])

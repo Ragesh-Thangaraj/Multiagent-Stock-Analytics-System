@@ -51,6 +51,11 @@ class TestDataFetcherIntegration:
         """Test that fetcher creates canonical JSON structure."""
         # Mock Yahoo client
         mock_yahoo_instance = Mock()
+
+        mock_yahoo_instance.version = "vtest"
+        mock_yahoo_instance.fetch_market_index.return_value = {"success": True, "price_history": []}
+        mock_yahoo_instance.fetch_news.return_value = []
+        
         mock_yahoo_instance.fetch_stock_data.return_value = {
             "success": True,
             "ticker": "AAPL",
@@ -58,9 +63,10 @@ class TestDataFetcherIntegration:
             "exchange": "NASDAQ",
             "currency": "USD",
             "price_history": [],
-            "fundamentals": {}
+            "fundamentals": {},
+            "info": {}
         }
-        mock_yahoo_instance.fetch_news.return_value = []
+        
         mock_yahoo.return_value = mock_yahoo_instance
         
         # Mock MarketAux client
@@ -82,5 +88,4 @@ class TestDataFetcherIntegration:
         assert data["meta"]["ticker"] == "AAPL"
 
 
-if __name__ == "__main__":
-    pytest.main([__file__, "-v"])
+

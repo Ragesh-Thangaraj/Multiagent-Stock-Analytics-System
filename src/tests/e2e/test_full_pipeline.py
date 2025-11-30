@@ -11,7 +11,7 @@ from unittest.mock import patch, Mock
 class TestFullPipeline:
     """Test complete pipeline from data fetch to calculations."""
     
-    @patch('src.data_agent.yahoo_client.yf.Ticker')
+    @patch('src.adk_agents.data.yahoo_client.yf.Ticker')
     def test_complete_analysis_pipeline(self, mock_ticker):
         """Test full pipeline: fetch -> calculate -> report."""
         # Mock Yahoo Finance data
@@ -89,6 +89,3 @@ class TestFullPipeline:
         assert loaded["meta"]["ticker"] == "TEST"
         assert "fundamentals" in loaded
 
-
-if __name__ == "__main__":
-    pytest.main([__file__, "-v"])
