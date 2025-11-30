@@ -1,0 +1,42 @@
+Example finGPT Prompt for Financial Analysis:
+
+SYSTEM PROMPT:
+You are finGPT, a financial domain expert trained on financial statements, market data, and investment analysis. Provide accurate, data-driven financial analysis.
+
+USER PROMPT:
+Analyze the following financial metrics for {company_name} ({ticker}):
+
+**Profitability:**
+- Gross Margin: {gross_margin}%
+- Operating Margin: {operating_margin}%
+- Net Margin: {net_margin}%
+- ROE: {roe}%
+- ROA: {roa}%
+
+**Liquidity:**
+- Current Ratio: {current_ratio}
+- Quick Ratio: {quick_ratio}
+- Working Capital: ${working_capital}
+
+**Leverage:**
+- Debt/Equity: {debt_to_equity}
+- Interest Coverage: {interest_coverage}x
+
+**Valuation:**
+- P/E: {pe_ratio}
+- DCF Value: ${dcf_value}
+- Market Price: ${market_price}
+- Upside: {upside}%
+
+**Risk:**
+- Volatility: {volatility}%
+- Sharpe Ratio: {sharpe}
+
+Provide:
+1. Overall financial health assessment (1-2 paragraphs)
+2. Key strengths (3 bullet points)
+3. Key weaknesses (3 bullet points)
+4. Valuation opinion (fairly valued/undervalued/overvalued)
+5. Investment recommendation with rationale
+
+Be data-driven and cite specific metrics in your analysis.

@@ -1,0 +1,134 @@
+{
+  "name": "voice-stock-analytics-agent",
+  "version": "1.0.0",
+  "description": "Multi-agent stock analytics system with voice interface, DCF valuation, and comprehensive financial analysis",
+  "entry_point": "entrypoint.py",
+  "runtime": "python311",
+  "agents": [
+    {
+      "name": "data_agent",
+      "type": "data_fetcher",
+      "prompt_file": "prompts/data_agent_marketaux_yahoo.prompt",
+      "description": "Fetches stock data from MarketAux and Yahoo Finance APIs",
+      "layer": 1
+    },
+    {
+      "name": "calculation_agent",
+      "type": "calculation_orchestrator",
+      "prompt_file": "prompts/calculation_agent.prompt",
+      "description": "Orchestrates execution of all financial calculation modules in sandbox",
+      "layer": 2
+    },
+    {
+      "name": "ratio_agent",
+      "type": "financial_analyst",
+      "prompt_file": "prompts/ratio_analysis_agent.prompt",
+      "description": "Analyzes financial ratios and operational metrics",
+      "layer": 2
+    },
+    {
+      "name": "valuation_agent",
+      "type": "valuation_analyst",
+      "prompt_file": "prompts/valuation_agent.prompt",
+      "description": "Performs DCF valuation and relative valuation analysis",
+      "layer": 2
+    },
+    {
+      "name": "risk_agent",
+      "type": "risk_analyst",
+      "prompt_file": "prompts/risk_agent.prompt",
+      "description": "Assesses market risk and financial risk",
+      "layer": 2
+    },
+    {
+      "name": "summarization_agent",
+      "type": "ai_summarizer",
+      "prompt_file": "prompts/summarization_agent.prompt",
+      "description": "Uses finGPT and Gemini to generate natural language summaries",
+      "layer": 3,
+      "models": ["finGPT", "gemini-2.5-pro"]
+    },
+    {
+      "name": "presentation_agent",
+      "type": "report_generator",
+      "prompt_file": "prompts/presentation_agent.prompt",
+      "description": "Generates PDF and HTML reports with charts",
+      "layer": 3
+    },
+    {
+      "name": "voice_agent",
+      "type": "voice_interface",
+      "prompt_file": "prompts/voice_agent.prompt",
+      "description": "Handles STT, TTS, and voice interaction",
+      "layer": 3,
+      "features": ["google_stt", "google_tts", "vosk_fallback", "coqui_fallback"]
+    }
+  ],
+  "execution_model": {
+    "type": "sequential_layers",
+    "layers": [
+      {
+        "id": 1,
+        "name": "data_fetch",
+        "agents": ["data_agent"],
+        "parallel": false,
+        "output": "canonical_json"
+      },
+      {
+        "id": 2,
+        "name": "calculations",
+        "agents": ["calculation_agent", "ratio_agent", "valuation_agent", "risk_agent"],
+        "parallel": true,
+        "input": "canonical_json",
+        "output": "calculated_metrics"
+      },
+      {
+        "id": 3,
+        "name": "presentation",
+        "agents": ["summarization_agent", "presentation_agent", "voice_agent"],
+        "parallel": false,
+        "input": "calculated_metrics",
+        "output": "final_report"
+      }
+    ]
+  },
+  "dependencies": {
+    "python_packages": [
+      "yfinance",
+      "streamlit",
+      "google-cloud-speech",
+      "google-cloud-texttospeech",
+      "google-genai",
+      "restrictedpython",
+      "reportlab",
+      "prometheus-client"
+    ],
+    "external_apis": [
+      "yahoo_finance",
+      "marketaux",
+      "google_stt",
+      "google_tts",
+      "gemini"
+    ]
+  },
+  "monitoring": {
+    "prometheus": true,
+    "cloud_logging": true,
+    "sentry": true,
+    "metrics": [
+      "api_latency_seconds",
+      "calculation_time_seconds",
+      "agent_runtime",
+      "job_success_total",
+      "job_failure_total",
+      "sandbox_errors_total",
+      "pdf_generation_seconds"
+    ]
+  },
+  "security": {
+    "sandbox_execution": true,
+    "secret_manager": "gcp",
+    "oauth2": true,
+    "rbac": ["admin", "analyst", "viewer"]
+  }
+}

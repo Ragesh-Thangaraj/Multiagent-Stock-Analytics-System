@@ -84,5 +84,5 @@ htmlcov/
 # -------------------------
 # Agent packages / bundles
 # -------------------------
-agent_engine_package/
+!agent_engine_package/
 agent_engine_package/*.zip
