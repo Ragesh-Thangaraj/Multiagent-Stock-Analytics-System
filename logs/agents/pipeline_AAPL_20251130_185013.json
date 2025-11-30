@@ -1,0 +1,14 @@
+{
+  "pipeline_id": "AAPL_20251130_185013",
+  "ticker": "AAPL",
+  "start_time": 1764508813.8109832,
+  "end_time": 1764508823.7225528,
+  "total_duration_ms": 9911.569595336914,
+  "status": "success",
+  "agent_metrics": [],
+  "layer1_duration_ms": 0.0,
+  "layer2_duration_ms": 0.0,
+  "layer3_duration_ms": 0.0,
+  "total_metrics_calculated": 0,
+  "total_metrics_successful": 0
+}
