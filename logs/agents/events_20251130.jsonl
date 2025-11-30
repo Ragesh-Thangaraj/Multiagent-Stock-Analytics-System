@@ -1,2 +1,0 @@
-{"timestamp": "2025-11-30T18:50:13.810983", "event_type": "pipeline_start", "data": {"pipeline_id": "AAPL_20251130_185013", "ticker": "AAPL"}}
-{"timestamp": "2025-11-30T18:50:23.722552", "event_type": "pipeline_end", "data": {"pipeline_id": "AAPL_20251130_185013", "status": "success", "duration_ms": 9911.569595336914, "metrics_success_rate": 0.0}}
