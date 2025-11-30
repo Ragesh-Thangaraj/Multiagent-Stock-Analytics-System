@@ -50,22 +50,6 @@ env/
 .env.*.local
 
 # -------------------------
-# Logs
-# -------------------------
-*.log
-logs/
-tmp/
-tmp/logs/
-
-# -------------------------
-# Data files (generated)
-# -------------------------
-runs/*.json
-reports/*.json
-reports/*.pdf
-reports/*.html
-
-# -------------------------
 # Temporary files
 # -------------------------
 *.tmp
