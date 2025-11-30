@@ -1,6 +1,8 @@
 # Stock Analytics Agent
 
-A multi-agent, multitool, chat-based stock analytics system featuring comprehensive financial analysis, AI-powered insights, and professional report generation.
+A multi-agent, multi-tool, deterministic stock analytics system featuring comprehensive financial analysis, AI-powered insights, multi-agent orchestration, and CI/CD automation.
+
+This project uses Google ADK (Agent Development Kit) to build a fully deterministic, testable, and production-ready financial analytics pipeline.
 
 ## Project Overview
 
@@ -22,12 +24,32 @@ The system uses ADK's `SequentialAgent` and `ParallelAgent` for workflow orchest
 
 ```
 SequentialAgent (StockAnalyticsPipeline)
-├── DeterministicDataAgent (BaseAgent) - Layer 1
-├── ParallelAgent (Layer2ParallelAgent) - Layer 2
-│   ├── DeterministicRatioAgent (BaseAgent)
-│   ├── DeterministicValuationAgent (BaseAgent)
-│   └── DeterministicRiskAgent (BaseAgent)
-└── DeterministicPresentationAgent (BaseAgent) - Layer 3
+├── Layer 1: DeterministicDataAgent
+│     ├── Tools:
+│     │     ├── YahooFinanceClient
+│     │     └── MarketAuxClient
+│     └── Output: Canonical JSON (Layer 1)
+│
+├── Layer 2: ParallelAgent (Layer2ParallelAgent)
+│     ├── DeterministicRatioAgent
+│     ├── DeterministicValuationAgent
+│     └── DeterministicRiskAgent
+│
+│     Tools (python-function tools):
+│       - Profitability Tools  
+│       - Liquidity Tools  
+│       - Valuation Tools  
+│       - Market Risk Tools  
+│       - Financial Risk Tools  
+│       - Efficiency Tools  
+│
+│     Output: Enriched calculated metrics (Layer 2)
+│
+└── Layer 3: DeterministicPresentationAgent 
+      ├── Report generator tools (PDF/HTML)
+      ├── Summary tools
+      └── AI Chattool (Gemini)
+
 ```
 
 ## Key Features
@@ -64,6 +86,14 @@ SequentialAgent (StockAnalyticsPipeline)
 - Input validation (ticker format, required fundamentals) enforced before running pipelines.
 - Rate limiting and execution time caps enforced by the MCP server’s guardrail policy.
 - Output filtering applied before returning results.
+
+### CI/CD Pipeline (GitHub Actions)
+- This project uses a production-grade CI/CD pipeline located at `github/workflows/ci.yml`
+- **Setup & Install**: Python 3.11 environment and Python 3.11 environment
+- **Code Quality**: Linting with Ruff and Formatting check with Black
+- **Automated Testing**: Runs unit, integration, and end-to-end tests and Generates coverage report
+- **Packaging**: Builds the agent_engine_package bundle for deployment
+- **Docker Build**: Builds a production-ready Docker image
 
 ## Quick Start
 
