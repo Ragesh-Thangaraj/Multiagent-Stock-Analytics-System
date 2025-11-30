@@ -10,16 +10,10 @@ agent_engine_package/
 ├── entrypoint.py          # Main orchestration entry point
 ├── prompts/               # Agent prompt files
 │   ├── data_agent_marketaux_yahoo.prompt
-│   ├── calculation_agent.prompt
 │   ├── ratio_analysis_agent.prompt
 │   ├── valuation_agent.prompt
 │   ├── risk_agent.prompt
-│   ├── summarization_agent.prompt
 │   ├── presentation_agent.prompt
-│   ├── voice_agent.prompt
-│   ├── infra_agent.prompt
-│   ├── fingpt_example.prompt
-│   └── gemini_example.prompt
 └── README_DEPLOY.md       # This file
 ```
 
@@ -32,8 +26,6 @@ agent_engine_package/
    - Cloud Run
    - Cloud Logging
    - Secret Manager
-   - Speech-to-Text
-   - Text-to-Speech
    - Vertex AI (for Gemini)
 
 ## Deployment Steps
