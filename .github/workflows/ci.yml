@@ -61,7 +61,7 @@ jobs:
         zip -r agent_engine_bundle.zip *
     
     - name: Upload Agent Package
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: agent-engine-bundle
         path: agent_engine_package/agent_engine_bundle.zip
