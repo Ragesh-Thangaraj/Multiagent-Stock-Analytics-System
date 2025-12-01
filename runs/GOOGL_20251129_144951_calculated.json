@@ -1,0 +1,473 @@
+{
+  "meta": {
+    "ticker": "GOOGL",
+    "company_name": "Alphabet Inc.",
+    "sector": "Communication Services",
+    "industry": "Internet Content & Information",
+    "exchange": "NMS",
+    "currency": "USD",
+    "market_cap": 3878058983424,
+    "fetch_timestamp": "2025-11-29T14:49:51.711873",
+    "period_days": 252
+  },
+  "info": {
+    "trailing_pe": 31.63834,
+    "forward_pe": 35.734375,
+    "price_to_book": 9.9953165,
+    "price_to_sales": 10.060442,
+    "enterprise_to_ebitda": 26.24,
+    "peg_ratio": null,
+    "enterprise_value": 3809310932992,
+    "market_cap": 3878058983424,
+    "book_value": 32.033,
+    "earnings_per_share": 10.12,
+    "forward_eps": 8.96,
+    "dividend_yield": 0.26,
+    "dividend_rate": 0.84,
+    "beta": 1.082,
+    "return_on_equity": 0.3545,
+    "return_on_assets": 0.16275999,
+    "profit_margins": 0.32233003,
+    "operating_margins": 0.30512,
+    "gross_margins": 0.59172,
+    "current_ratio": 1.747,
+    "quick_ratio": 1.563,
+    "debt_to_equity": 11.424,
+    "total_debt": 44195000320,
+    "total_cash": 98496004096,
+    "free_cash_flow": 47997751296,
+    "operating_cash_flow": 151424008192,
+    "revenue": 385476001792,
+    "revenue_growth": 0.159,
+    "earnings_growth": 0.353,
+    "current_price": 320.18,
+    "previous_close": 319.95,
+    "fifty_two_week_high": 328.83,
+    "fifty_two_week_low": 140.53,
+    "shares_outstanding": 5818000000,
+    "total_assets": null,
+    "total_liabilities": 44195000320
+  },
+  "calculated": {
+    "profitability": {
+      "gross_margin": {
+        "status": "success",
+        "metric": "gross_margin",
+        "value": 59.17,
+        "unit": "%",
+        "formula": "(Revenue - COGS) / Revenue \u00d7 100",
+        "source": "yahoo_finance.precomputed",
+        "interpretation": "Excellent - strong pricing power"
+      },
+      "operating_margin": {
+        "status": "success",
+        "metric": "operating_margin",
+        "value": 30.51,
+        "unit": "%",
+        "formula": "Operating Income / Revenue \u00d7 100",
+        "source": "yahoo_finance.precomputed",
+        "interpretation": "Excellent - efficient operations"
+      },
+      "net_margin": {
+        "status": "success",
+        "metric": "net_margin",
+        "value": 32.23,
+        "unit": "%",
+        "formula": "Net Income / Revenue \u00d7 100",
+        "source": "yahoo_finance.precomputed",
+        "interpretation": "Excellent"
+      },
+      "roa": {
+        "status": "success",
+        "metric": "roa",
+        "value": 16.28,
+        "unit": "%",
+        "formula": "Net Income / Total Assets \u00d7 100",
+        "source": "yahoo_finance.precomputed",
+        "interpretation": "Excellent - highly efficient asset utilization"
+      },
+      "roe": {
+        "status": "success",
+        "metric": "roe",
+        "value": 35.45,
+        "unit": "%",
+        "formula": "Net Income / Shareholders' Equity \u00d7 100",
+        "source": "yahoo_finance.precomputed",
+        "interpretation": "Excellent - strong returns for shareholders"
+      },
+      "roic": {
+        "status": "success",
+        "metric": "roic",
+        "value": 27.15,
+        "unit": "%",
+        "formula": "NOPAT / (Total Debt + Equity - Cash) \u00d7 100",
+        "source": "calculated.fundamentals",
+        "interpretation": "Excellent - creating significant value"
+      }
+    },
+    "liquidity": {
+      "current_ratio": {
+        "status": "success",
+        "metric": "current_ratio",
+        "value": 1.75,
+        "unit": "x",
+        "formula": "Current Assets / Current Liabilities",
+        "source": "yahoo_finance.precomputed",
+        "interpretation": "Adequate liquidity"
+      },
+      "quick_ratio": {
+        "status": "success",
+        "metric": "quick_ratio",
+        "value": 1.56,
+        "unit": "x",
+        "formula": "(Current Assets - Inventory) / Current Liabilities",
+        "source": "yahoo_finance.precomputed",
+        "interpretation": "Strong liquidity"
+      },
+      "cash_ratio": {
+        "status": "success",
+        "metric": "cash_ratio",
+        "value": 0.26,
+        "unit": "x",
+        "formula": "Cash / Current Liabilities",
+        "source": "calculated.fundamentals",
+        "interpretation": "Limited cash cushion"
+      },
+      "working_capital": {
+        "status": "success",
+        "metric": "working_capital",
+        "value": 74.59,
+        "unit": "B USD",
+        "formula": "Current Assets - Current Liabilities",
+        "source": "calculated.fundamentals",
+        "interpretation": "Positive"
+      }
+    },
+    "leverage": {
+      "debt_to_equity": {
+        "status": "success",
+        "metric": "debt_to_equity",
+        "value": 0.11,
+        "unit": "x",
+        "formula": "Total Debt / Shareholders' Equity",
+        "source": "yahoo_finance.precomputed",
+        "interpretation": "Conservative - low leverage"
+      },
+      "debt_to_assets": {
+        "status": "success",
+        "metric": "debt_to_assets",
+        "value": 0.06,
+        "unit": "x",
+        "formula": "Total Debt / Total Assets",
+        "source": "calculated.fundamentals",
+        "interpretation": "Conservative - low debt reliance"
+      },
+      "interest_coverage": {
+        "status": "success",
+        "metric": "interest_coverage",
+        "value": 448.07,
+        "unit": "x",
+        "formula": "EBIT / Interest Expense",
+        "source": "calculated.fundamentals",
+        "interpretation": "Excellent - easily covers interest"
+      }
+    },
+    "efficiency": {
+      "asset_turnover": {
+        "status": "success",
+        "metric": "asset_turnover",
+        "value": 0.78,
+        "unit": "x",
+        "formula": "Revenue / Total Assets",
+        "source": "calculated.fundamentals",
+        "interpretation": "Lower efficiency - capital intensive"
+      },
+      "inventory_turnover": {
+        "status": "success",
+        "metric": "inventory_turnover",
+        "value": null,
+        "null_reason": "Company has no inventory on balance sheet"
+      },
+      "receivables_turnover": {
+        "status": "success",
+        "metric": "receivables_turnover",
+        "value": 7.36,
+        "unit": "x",
+        "formula": "Revenue / Accounts Receivable",
+        "source": "calculated.fundamentals",
+        "interpretation": "Collects receivables 7.4 times per year"
+      }
+    },
+    "growth": {
+      "revenue_growth": {
+        "status": "success",
+        "metric": "revenue_growth",
+        "value": 15.9,
+        "unit": "%",
+        "formula": "(Current Revenue - Prior Revenue) / Prior Revenue \u00d7 100",
+        "source": "yahoo_finance.precomputed",
+        "interpretation": "Healthy Revenue growth"
+      },
+      "net_income_growth": {
+        "status": "success",
+        "metric": "net_income_growth",
+        "value": 35.3,
+        "unit": "%",
+        "formula": "(Current Net Income - Prior Net Income) / Prior Net Income \u00d7 100",
+        "source": "yahoo_finance.precomputed",
+        "interpretation": "Strong Net Income growth"
+      },
+      "eps_growth": {
+        "status": "success",
+        "metric": "eps_growth",
+        "value": -11.46,
+        "unit": "%",
+        "formula": "(Forward EPS - Trailing EPS) / Trailing EPS \u00d7 100",
+        "source": "calculated.info",
+        "interpretation": "Significant EPS decline"
+      },
+      "fcf_growth": {
+        "status": "success",
+        "metric": "fcf_growth",
+        "value": 4.7,
+        "unit": "%",
+        "formula": "(Current FCF - Prior FCF) / Prior FCF \u00d7 100",
+        "source": "calculated.fundamentals",
+        "interpretation": "Modest Free Cash Flow growth"
+      },
+      "operating_income_growth": {
+        "status": "success",
+        "metric": "operating_income_growth",
+        "value": 33.33,
+        "unit": "%",
+        "formula": "(Current EBIT - Prior EBIT) / Prior EBIT \u00d7 100",
+        "source": "calculated.fundamentals",
+        "interpretation": "Strong Operating Income growth"
+      }
+    },
+    "cashflow": {
+      "free_cash_flow": {
+        "status": "success",
+        "metric": "free_cash_flow",
+        "value": 48.0,
+        "unit": "B USD",
+        "formula": "Operating Cash Flow - Capital Expenditures",
+        "source": "yahoo_finance.precomputed",
+        "interpretation": "Positive"
+      },
+      "operating_cash_flow_ratio": {
+        "status": "success",
+        "metric": "operating_cash_flow_ratio",
+        "value": 1.7,
+        "unit": "x",
+        "formula": "Operating Cash Flow / Current Liabilities",
+        "source": "calculated.info",
+        "interpretation": "Strong"
+      },
+      "cash_flow_margin": {
+        "status": "success",
+        "metric": "cash_flow_margin",
+        "value": 39.28,
+        "unit": "%",
+        "formula": "Operating Cash Flow / Revenue \u00d7 100",
+        "source": "calculated.info",
+        "interpretation": "Excellent"
+      }
+    },
+    "valuation": {
+      "pe_ratio": {
+        "status": "success",
+        "metric": "pe_ratio",
+        "value": 31.64,
+        "unit": "x",
+        "formula": "Stock Price / Earnings Per Share (TTM)",
+        "source": "yahoo_finance.precomputed",
+        "interpretation": "High valuation - high growth expected"
+      },
+      "forward_pe": {
+        "status": "success",
+        "metric": "forward_pe",
+        "value": 35.73,
+        "unit": "x",
+        "formula": "Stock Price / Forward Earnings Per Share",
+        "source": "yahoo_finance.precomputed",
+        "interpretation": "Very high forward valuation"
+      },
+      "price_to_book": {
+        "status": "success",
+        "metric": "price_to_book",
+        "value": 10.0,
+        "unit": "x",
+        "formula": "Stock Price / Book Value Per Share",
+        "source": "yahoo_finance.precomputed",
+        "interpretation": "High premium - asset-light or intangible-heavy business"
+      },
+      "price_to_sales": {
+        "status": "success",
+        "metric": "price_to_sales",
+        "value": 10.06,
+        "unit": "x",
+        "formula": "Market Cap / Revenue (TTM)",
+        "source": "yahoo_finance.precomputed",
+        "interpretation": "Very high valuation relative to sales"
+      },
+      "ev_to_ebitda": {
+        "status": "success",
+        "metric": "ev_to_ebitda",
+        "value": 26.24,
+        "unit": "x",
+        "formula": "Enterprise Value / EBITDA",
+        "source": "yahoo_finance.precomputed",
+        "interpretation": "Very high valuation"
+      },
+      "peg_ratio": {
+        "status": "success",
+        "metric": "peg_ratio",
+        "value": 0.9,
+        "unit": "x",
+        "formula": "P/E Ratio / EPS Growth Rate",
+        "source": "calculated.info",
+        "interpretation": "Potentially undervalued relative to growth"
+      },
+      "enterprise_value": {
+        "status": "success",
+        "metric": "enterprise_value",
+        "value": 3809.31,
+        "unit": "B USD",
+        "formula": "Market Cap + Total Debt - Cash",
+        "source": "yahoo_finance.precomputed",
+        "interpretation": "Total enterprise value of $3809.3B"
+      },
+      "earnings_yield": {
+        "status": "success",
+        "metric": "earnings_yield",
+        "value": 3.16,
+        "unit": "%",
+        "formula": "EPS / Stock Price \u00d7 100",
+        "source": "calculated.info",
+        "interpretation": "Low earnings yield - growth stock characteristics"
+      },
+      "book_value_per_share": {
+        "status": "success",
+        "metric": "book_value_per_share",
+        "value": 32.03,
+        "unit": "USD",
+        "formula": "Shareholders' Equity / Shares Outstanding",
+        "source": "yahoo_finance.precomputed",
+        "interpretation": "Net asset value of $32.03 per share"
+      },
+      "dividend_yield": {
+        "status": "success",
+        "metric": "dividend_yield",
+        "value": 0.26,
+        "unit": "%",
+        "formula": "Annual Dividend / Stock Price \u00d7 100",
+        "source": "yahoo_finance.precomputed",
+        "interpretation": "Low yield - growth focused"
+      }
+    },
+    "risk_market": {
+      "beta": {
+        "status": "success",
+        "metric": "beta",
+        "value": 1.08,
+        "unit": "",
+        "formula": "Covariance(Stock, Market) / Variance(Market)",
+        "source": "yahoo_finance.precomputed",
+        "interpretation": "Average market volatility"
+      },
+      "alpha": {
+        "status": "success",
+        "metric": "alpha",
+        "value": 81.42,
+        "unit": "%",
+        "formula": "Annualized(\u220f(1+r_daily)) - [Rf + \u03b2 \u00d7 (Rm - Rf)]",
+        "source": "calculated.price_history.compounded_daily",
+        "interpretation": "Strong outperformance vs market"
+      },
+      "volatility": {
+        "status": "success",
+        "metric": "volatility",
+        "value": 33.31,
+        "unit": "%",
+        "formula": "StdDev(Daily Returns) \u00d7 \u221a252 \u00d7 100",
+        "source": "calculated.price_history",
+        "interpretation": "High volatility"
+      },
+      "sharpe_ratio": {
+        "status": "success",
+        "metric": "sharpe_ratio",
+        "value": 2.58,
+        "unit": "",
+        "formula": "(Annual Return - Risk-Free Rate) / Annual Volatility",
+        "source": "calculated.price_history",
+        "interpretation": "Excellent risk-adjusted return"
+      },
+      "max_drawdown": {
+        "status": "success",
+        "metric": "max_drawdown",
+        "value": 29.81,
+        "unit": "%",
+        "formula": "(Peak - Trough) / Peak \u00d7 100",
+        "source": "calculated.price_history",
+        "interpretation": "Significant drawdown"
+      },
+      "var_95": {
+        "status": "success",
+        "metric": "var_95",
+        "value": 2.77,
+        "unit": "%",
+        "formula": "5th percentile of daily returns \u00d7 100",
+        "source": "calculated.price_history",
+        "interpretation": "95% confident daily loss won't exceed 2.77%"
+      }
+    },
+    "risk_financial": {
+      "altman_z_score": {
+        "status": "success",
+        "metric": "altman_z_score",
+        "value": 21.21,
+        "unit": "",
+        "formula": "1.2\u00d7(WC/TA) + 1.4\u00d7(RE/TA) + 3.3\u00d7(EBIT/TA) + 0.6\u00d7(MC/TL) + 1.0\u00d7(Rev/TA)",
+        "source": "calculated.fundamentals",
+        "interpretation": "Safe Zone - low bankruptcy risk"
+      },
+      "credit_risk_score": {
+        "status": "success",
+        "metric": "credit_risk_score",
+        "value": 25,
+        "unit": "/100",
+        "formula": "Composite of D/E ratio and current ratio",
+        "source": "calculated.composite",
+        "interpretation": "Low credit risk"
+      },
+      "liquidity_risk_score": {
+        "status": "success",
+        "metric": "liquidity_risk_score",
+        "value": 20,
+        "unit": "/100",
+        "formula": "Composite of current ratio and quick ratio",
+        "source": "calculated.composite",
+        "interpretation": "Low liquidity risk"
+      },
+      "operational_risk_score": {
+        "status": "success",
+        "metric": "operational_risk_score",
+        "value": 15,
+        "unit": "/100",
+        "formula": "Composite of operating and profit margins",
+        "source": "calculated.composite",
+        "interpretation": "Low operational risk"
+      }
+    }
+  },
+  "overall_risk": {
+    "assessment": "Low to Moderate Risk",
+    "level": "moderate",
+    "flags": [],
+    "flag_count": 0
+  },
+  "timing": {
+    "adk_runner_ms": 7558.673858642578
+  }
+}

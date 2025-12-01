@@ -1,0 +1,2 @@
+{"timestamp": "2025-11-29T14:49:44.157802", "event_type": "pipeline_start", "data": {"pipeline_id": "GOOGL_20251129_144944", "ticker": "GOOGL"}}
+{"timestamp": "2025-11-29T14:49:51.726275", "event_type": "pipeline_end", "data": {"pipeline_id": "GOOGL_20251129_144944", "status": "success", "duration_ms": 7568.472862243652, "metrics_success_rate": 0.0}}
